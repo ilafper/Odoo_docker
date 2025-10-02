@@ -6,5 +6,3 @@ db_password = odoo_db
 db_port = 5432
 http_port = 8069
 longpolling_port = 8072
-
-

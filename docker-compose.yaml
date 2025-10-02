@@ -16,7 +16,7 @@ services:
 
   db:
     container_name: postgresdb
-    image: postgres:12.10
+    image: postgres:15.0
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=odoo_db
