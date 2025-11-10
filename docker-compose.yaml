@@ -1,5 +1,4 @@
 version: '3'
-
 services:
   odoo:
     container_name: e0.bigodoo.net
