@@ -14,7 +14,7 @@
             </field>
         </record>
 
-        <!-- Vista de formulario -->
+        <!-- vista de los campos de la tarea -->
         <record id="lista_tareas_form" model="ir.ui.view">
             <field name="name">lista.tareas.form</field>
             <field name="model">lista_tareas.lista_tareas</field>
