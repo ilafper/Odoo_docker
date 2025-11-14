@@ -1,7 +1,7 @@
 from odoo import models, fields, api
 
 class ListaTareas(models.Model):
-    _name = 'lista_tareas.lista_tareas'   # Debe coincidir exactamente con la vista
+    _name = 'lista_tareas.lista_tareas'
     _description = 'Modelo de tareas'
 
     tarea = fields.Char(string='Tarea')
