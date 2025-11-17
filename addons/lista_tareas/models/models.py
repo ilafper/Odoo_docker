@@ -10,11 +10,13 @@ class ListaTareas(models.Model):
     urgente = fields.Boolean(string='Urgente', compute='_compute_urgente', store=True)
     realizada = fields.Boolean(string='Realizada')
 
-    #añdido lo de la fecha limite
-    deadline = fields.Date(string='Fecha Límite')
+    #añadido lo de la fecha limite en la base de datos, el "fields.date" indica el tipo de dato que es el campo en este caso fecha.
+    fecha_limite = fields.Date(string='Fecha Límite')
 
-    #Este computo depende de la variable prioridad
+    #añadir usuarios a la tarea.
+    usuario_reponsable = fields.Many2many('res.users', string='Responsables')
 
+   
     @api.depends('prioridad')
 
     def _compute_urgente(self):
