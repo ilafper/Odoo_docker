@@ -23,6 +23,7 @@
             <field name="name">lista.tareas.form</field>
             <field name="model">lista_tareas.lista_tareas</field>
             <field name="arch" type="xml">
+            
                 <form string="Tarea">
                     <sheet>
                         <group>
@@ -37,6 +38,7 @@
                         </group>
                     </sheet>
                 </form>
+
             </field>
         </record>
 

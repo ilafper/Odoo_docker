@@ -14,8 +14,9 @@ class ListaTareas(models.Model):
     fecha_limite = fields.Date(string='Fecha Límite')
 
     #añadir usuarios a la tarea.
-    usuario_reponsable = fields.Many2many('res.users', string='Responsables')
 
+    usuario_reponsable = fields.Many2many('res.users', string='Responsables')
+    
    
     @api.depends('prioridad')
 
