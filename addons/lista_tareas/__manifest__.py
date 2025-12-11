@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #Este es el archivo principal
 {
-    'name': "lista_tareas Practica4",
+    'name': "lista_tareas_asdasdasds",
     'summary': "Sencilla lista de tareas",
     'description': """
         Módulo para gestionar tareas simples con prioridad y estado.

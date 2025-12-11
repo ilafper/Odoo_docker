@@ -15,26 +15,13 @@
             </field>
         </record>
 
-        <record id="lista_tareas_list_with_button" model="ir.ui.view">
-            <field name="name">lista.tareas.list.with.button</field>
-            <field name="model">lista_tareas.lista_tareas</field>
-            <field name="inherit_id" ref="lista_tareas_list"/>
-            <field name="arch" type="xml">
-                <xpath expr="//list" position="before">
-                    <header>
-                        <!-- Usar ref directo en lugar de %()d -->
-                        <button name="action_show_kanban" type="object" string="Ver Kanban" class="btn-primary"/>
-                    </header>
-                </xpath>
-            </field>
-        </record>
-
-        <!-- Vista Kanban -->
+        <!-- Vista Kanban con botones -->
         <record id="lista_tareas_kanban" model="ir.ui.view">
             <field name="name">lista.tareas.kanban</field>
             <field name="model">lista_tareas.lista_tareas</field>
             <field name="arch" type="xml">
-                <kanban class="o_kanban_mobile">
+                <kanban default_group_by="prioridad">
+                    <!-- Campos disponibles en tu modelo -->
                     <field name="tarea"/>
                     <field name="prioridad"/>
                     <field name="urgente"/>
@@ -44,24 +31,57 @@
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_global_click">
-                                <div class="o_kanban_record_top">
-                                    <div class="o_kanban_record_title">
-                                        <field name="tarea"/>
+                                <!-- Título -->
+                                <div class="o_kanban_record_title">
+                                    <field name="tarea"/>
+                                </div>
+                                
+                                <!-- Información de la tarea -->
+                                <div class="o_kanban_record_body">
+                                    <div>Prioridad: <field name="prioridad"/></div>
+                                    <div>Fecha límite: <field name="deadline"/></div>
+                                </div>
+                                
+                                <!-- Botones como en la imagen -->
+                                <div class="o_kanban_card_footer">
+                                    <div class="o_kanban_card_buttons">
+                                        <!-- Botón Urgente con icono y estado -->
+                                        <button type="object" name="toggle_urgente" 
+                                                class="oe_kanban_action oe_kanban_action_a"
+                                                title="Marcar como urgente"
+                                                t-attf-class="oe_kanban_action oe_kanban_action_a #{record.urgente.raw_value ? 'btn-success' : 'btn-secondary'}">
+                                            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                            Urgente
+                                        </button>
+                                        
+                                        <!-- Botón Realizada con icono y estado -->
+                                        <button type="object" name="toggle_realizada" 
+                                                class="oe_kanban_action oe_kanban_action_a"
+                                                title="Marcar como realizada"
+                                                t-attf-class="oe_kanban_action oe_kanban_action_a #{record.realizada.raw_value ? 'btn-success' : 'btn-secondary'}">
+                                            <i class="fa fa-check" aria-hidden="true"></i>
+                                            Realizada
+                                        </button>
+                                        
+                                        <!-- Botón Eliminar -->
+                                        <button type="object" name="unlink" 
+                                                class="oe_kanban_action oe_kanban_action_a btn-danger"
+                                                title="Eliminar tarea"
+                                                confirm="¿Estás seguro de eliminar esta tarea?">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                            Eliminar
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="o_kanban_record_body">
-                                    <div>
-                                        Prioridad: <field name="prioridad"/>
-                                    </div>
-                                    <div>
-                                        Urgente: <field name="urgente" widget="boolean_button"/>
-                                    </div>
-                                    <div>
-                                        Realizada: <field name="realizada" widget="boolean_button"/>
-                                    </div>
-                                    <div>
-                                        Fecha límite: <field name="deadline"/>
-                                    </div>
+                                
+                                <!-- Indicadores de estado visual -->
+                                <div class="o_kanban_card_status">
+                                    <span t-if="record.urgente.raw_value" class="badge badge-danger">
+                                        <i class="fa fa-exclamation" aria-hidden="true"></i> URGENTE
+                                    </span>
+                                    <span t-if="record.realizada.raw_value" class="badge badge-success">
+                                        <i class="fa fa-check-circle" aria-hidden="true"></i> COMPLETADA
+                                    </span>
                                 </div>
                             </div>
                         </t>
@@ -96,19 +116,10 @@
             <field name="view_mode">list,kanban,form</field>
         </record>
 
-        <!-- Acción de ventana específica para Kanban -->
-        <record id="lista_tareas_kanban_action" model="ir.actions.act_window">
-            <field name="name">Tablero Kanban de Tareas</field>
-            <field name="res_model">lista_tareas.lista_tareas</field>
-            <field name="view_mode">kanban,list,form</field>
-            <field name="view_id" ref="lista_tareas_kanban"/>
-        </record>
-
         <!-- Menús -->
         <menuitem name="Listado de tareas" id="lista_tareas_menu_root"/>
         <menuitem name="Opciones" id="lista_tareas_menu_opciones" parent="lista_tareas_menu_root"/>
         <menuitem name="Mostrar lista" id="lista_tareas_menu_list" parent="lista_tareas_menu_opciones" action="lista_tareas_action"/>
-        <menuitem name="Ver Kanban" id="lista_tareas_menu_kanban" parent="lista_tareas_menu_opciones" action="lista_tareas_kanban_action"/>
 
     </data>
 </odoo>
