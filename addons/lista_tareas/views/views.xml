@@ -23,6 +23,7 @@
             <field name="arch" type="xml">
                 <form string="Tarea">
                     <sheet>
+                        
                         <group>
                             <field name="tarea"/>
                             <field name="prioridad"/>
@@ -30,6 +31,7 @@
                             <field name="realizada"/>
                             <field name="deadline"/>
                         </group>
+                        
                     </sheet>
                 </form>
             </field>
