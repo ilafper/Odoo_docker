@@ -8,6 +8,7 @@ class ListaTareas(models.Model):
     prioridad = fields.Integer(string='Prioridad')
     urgente = fields.Boolean(string='Urgente', compute='_compute_urgente', store=True)
     realizada = fields.Boolean(string='Realizada')
+    
     deadline = fields.Date(string='Fecha Límite')
 
     @api.depends('prioridad')

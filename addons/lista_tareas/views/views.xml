@@ -15,39 +15,42 @@
             </field>
         </record>
 
-        <!-- Vista Kanban con botones -->
-        <record id="custom_project_task_kanban_view" model="ir.ui.view">
-        <field name="name">project.task.custom.kanban.view</field>
-        <field name="model">project.task</field>
-        <field name="arch" type="xml">
-            <kanban default_group_by="stage_id">
-                <field name="name" />
-                <field name="stage_id" />
-                <field name="user_ids" />
-                <field name="date_deadline" />
-
-                <templates>
-                    <t t-name="kanban-box">
-                        <div class="oe_kanban_card oe_kanban_global_click">
-                            <strong><field name="name"/></strong>
-                            <div>
-                                <span>Etapa: <field name="stage_id" /></span><br/>
-                                <span>Asignado a: <field name="user_ids" /></span><br/>
-                                <span>Fecha límite: <field name="date_deadline" /></span>
+        <!-- Vista Kanban para TU MODELO -->
+        <record id="lista_tareas_kanban" model="ir.ui.view">
+            <field name="name">lista.tareas.kanban</field>
+            <field name="model">lista_tareas.lista_tareas</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="tarea"/>
+                    <field name="prioridad"/>
+                    <field name="urgente"/>
+                    <field name="realizada"/>
+                    <field name="deadline"/>
+                    
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card oe_kanban_global_click">
+                                <strong><field name="tarea"/></strong>
+                                <div>
+                                    <span>Prioridad: <field name="prioridad"/></span><br/>
+                                    <span>Urgente: <field name="urgente" widget="boolean"/></span><br/>
+                                    <span>Realizada: <field name="realizada" widget="boolean"/></span><br/>
+                                    <span>Fecha límite: <field name="deadline"/></span>
+                                </div>
                             </div>
-                        </div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
 
-   
-    <record id='action_tareas_kanban' model='ir.actions.act_window'>
-        <field name="name">Mis tareas (Kanban)</field>
-        <field name="res_model">project.task</field>
-        <field name="view_mode">kanban,form</field>
-    </record>
+        <!-- Acción para vista Kanban de TU MODELO -->
+        <record id='action_tareas_kanban' model='ir.actions.act_window'>
+            <field name="name">Mis tareas (Kanban)</field>
+            <field name="res_model">lista_tareas.lista_tareas</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="view_id" ref="lista_tareas_kanban"/>
+        </record>
 
         <!-- Vista formulario -->
         <record id="lista_tareas_form" model="ir.ui.view">
@@ -72,22 +75,16 @@
         <record id="lista_tareas_action" model="ir.actions.act_window">
             <field name="name">Listado de tareas</field>
             <field name="res_model">lista_tareas.lista_tareas</field>
-            <field name="view_mode">list,kanban,form</field>
+            <field name="view_mode">list,form,kanban</field>
         </record>
 
         <!-- Menús -->
         <menuitem name="Listado de tareas" id="lista_tareas_menu_root"/>
         <menuitem name="Opciones" id="lista_tareas_menu_opciones" parent="lista_tareas_menu_root"/>
         <menuitem name="Mostrar lista" id="lista_tareas_menu_list" parent="lista_tareas_menu_opciones" action="lista_tareas_action"/>
-
-
-        <menuitem id="menu_custom_top_level" 
-              name="Mis tareas (Kanban)"/>
-
-        <menuitem id="menu_tareas_kanban" 
-                parent="menu_custom_top_level" 
-                action="action_tareas_kanban" 
-                sequence="10"/>
+        
+        <!-- Menú adicional para Kanban -->
+        <menuitem name="Ver Kanban" id="lista_tareas_menu_kanban" parent="lista_tareas_menu_opciones" action="action_tareas_kanban"/>
 
     </data>
 </odoo>
