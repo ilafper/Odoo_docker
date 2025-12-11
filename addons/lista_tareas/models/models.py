@@ -16,16 +16,3 @@ class ListaTareas(models.Model):
         for record in self:
             record.urgente = record.prioridad > 10
     
-    # Métodos para los botones - ahora modificamos la prioridad
-    def toggle_urgente(self):
-        """Alternar el estado urgente cambiando la prioridad"""
-        for record in self:
-            if record.prioridad <= 10:
-                record.prioridad = 15  
-            else:
-                record.prioridad = 5  
-    
-    def toggle_realizada(self):
-        """Alternar el estado realizada"""
-        for record in self:
-            record.realizada = not record.realizada
