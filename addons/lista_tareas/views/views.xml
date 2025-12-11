@@ -15,7 +15,7 @@
             </field>
         </record>
 
-        <!-- Vista Kanban para TU MODELO -->
+        <!-- Vista kanvan-->
         <record id="lista_tareas_kanban" model="ir.ui.view">
             <field name="name">lista.tareas.kanban</field>
             <field name="model">lista_tareas.lista_tareas</field>
@@ -71,6 +71,7 @@
             </field>
         </record>
         
+
         <!-- Acción de ventana principal -->
         <record id="lista_tareas_action" model="ir.actions.act_window">
             <field name="name">Listado de tareas</field>
@@ -82,8 +83,9 @@
         <menuitem name="Listado de tareas" id="lista_tareas_menu_root"/>
         <menuitem name="Opciones" id="lista_tareas_menu_opciones" parent="lista_tareas_menu_root"/>
         <menuitem name="Mostrar lista" id="lista_tareas_menu_list" parent="lista_tareas_menu_opciones" action="lista_tareas_action"/>
+        <menuitem name="Calendario" id="lista_tareas_menu_Calendario" parent="lista_tareas_menu_opciones" action="action_tareas_calendario"/>
         
-        <!-- Menú adicional para Kanban -->
+        <!-- menu kanvan-->
         <menuitem name="Ver Kanban" id="lista_tareas_menu_kanban" parent="lista_tareas_menu_opciones" action="action_tareas_kanban"/>
 
     </data>
