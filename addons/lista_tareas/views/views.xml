@@ -6,6 +6,7 @@
             <field name="name">lista.tareas.list</field>
             <field name="model">lista_tareas.lista_tareas</field>
             <field name="arch" type="xml">
+
                 <list string="Lista de Tareas">
                     <field name="tarea"/>
                     <field name="prioridad"/>
@@ -13,6 +14,21 @@
                     <field name="realizada"/>
                     <field name="deadline"/>
                 </list>
+            </field>
+        </record>
+        <record id="lista_tareas_list_with_button" model="ir.ui.view">
+            <field name="name">lista.tareas.list.with.button</field>
+            <field name="model">lista_tareas.lista_tareas</field>
+            <field name="inherit_id" ref="lista_tareas_list"/>
+            <field name="arch" type="xml">
+                <xpath expr="//list" position="before">
+                    <header>
+                        <button name="%(lista_tareas_kanban_action)d"
+                                type="action"
+                                string="Ver Kanban"
+                                class="btn-primary"/>
+                    </header>
+                </xpath>
             </field>
         </record>
 

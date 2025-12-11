@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     
-    <record id="custom_project_task_kanban_view" model="ir.ui.view">
-        <field name="name">project.task.custom.kanban.view</field>
-        <field name="model">project.task</field>
+    <record id="lista_tareas_kanban_view" model="ir.ui.view">
+        <field name="name">lista.tareas.kanban</field>
+        <field name="model">lista_tareas.lista_tareas</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="stage_id">
-                <field name="name" />
-                <field name="stage_id" />
-                <field name="user_ids" />
-                <field name="date_deadline" />
+            <kanban>
+                <field name="tarea"/>
+                <field name="prioridad"/>
+                <field name="urgente"/>
+                <field name="realizada"/>
+                <field name="deadline"/>
 
                 <templates>
                     <t t-name="kanban-box">
-                        <div class="oe_kanban_card oe_kanban_global_click">
-                            <strong><field name="name"/></strong>
+                        <div class="oe_kanban_card">
+                            <strong><field name="tarea"/></strong>
                             <div>
-                                <span>Etapa: <field name="stage_id" /></span><br/>
-                                <span>Asignado a: <field name="user_ids" /></span><br/>
-                                <span>Fecha límite: <field name="date_deadline" /></span>
+                                <span>Prioridad: <field name="prioridad"/></span><br/>
+                                <span>Urgente: <field name="urgente"/></span><br/>
+                                <span>Realizada: <field name="realizada"/></span><br/>
+                                <span>Deadline: <field name="deadline"/></span><br/>
                             </div>
                         </div>
                     </t>
@@ -26,6 +28,7 @@
             </kanban>
         </field>
     </record>
+
 
    
     <record id='action_tareas_kanban' model='ir.actions.act_window'>
