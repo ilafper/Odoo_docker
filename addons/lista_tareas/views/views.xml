@@ -15,80 +15,38 @@
             </field>
         </record>
 
-        <!-- Vista Kanban con botones -->
-        <record id="lista_tareas_kanban" model="ir.ui.view">
-            <field name="name">lista.tareas.kanban</field>
-            <field name="model">lista_tareas.lista_tareas</field>
-            <field name="arch" type="xml">
-                <kanban default_group_by="prioridad">
-                    <!-- Campos disponibles en tu modelo -->
-                    <field name="tarea"/>
-                    <field name="prioridad"/>
-                    <field name="urgente"/>
-                    <field name="realizada"/>
-                    <field name="deadline"/>
-                    
-                    <templates>
-                        <t t-name="kanban-box">
-                            <div class="oe_kanban_global_click">
-                                <!-- Título -->
-                                <div class="o_kanban_record_title">
-                                    <field name="tarea"/>
-                                </div>
-                                
-                                <!-- Información de la tarea -->
-                                <div class="o_kanban_record_body">
-                                    <div>Prioridad: <field name="prioridad"/></div>
-                                    <div>Fecha límite: <field name="deadline"/></div>
-                                </div>
-                                
-                                <!-- Botones como en la imagen -->
-                                <div class="o_kanban_card_footer">
-                                    <div class="o_kanban_card_buttons">
-                                        <!-- Botón Urgente con icono y estado -->
-                                        <button type="object" name="toggle_urgente" 
-                                                class="oe_kanban_action oe_kanban_action_a"
-                                                title="Marcar como urgente"
-                                                t-attf-class="oe_kanban_action oe_kanban_action_a #{record.urgente.raw_value ? 'btn-success' : 'btn-secondary'}">
-                                            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                                            Urgente
-                                        </button>
-                                        
-                                        <!-- Botón Realizada con icono y estado -->
-                                        <button type="object" name="toggle_realizada" 
-                                                class="oe_kanban_action oe_kanban_action_a"
-                                                title="Marcar como realizada"
-                                                t-attf-class="oe_kanban_action oe_kanban_action_a #{record.realizada.raw_value ? 'btn-success' : 'btn-secondary'}">
-                                            <i class="fa fa-check" aria-hidden="true"></i>
-                                            Realizada
-                                        </button>
-                                        
-                                        <!-- Botón Eliminar -->
-                                        <button type="object" name="unlink" 
-                                                class="oe_kanban_action oe_kanban_action_a btn-danger"
-                                                title="Eliminar tarea"
-                                                confirm="¿Estás seguro de eliminar esta tarea?">
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                            Eliminar
-                                        </button>
-                                    </div>
-                                </div>
-                                
-                                <!-- Indicadores de estado visual -->
-                                <div class="o_kanban_card_status">
-                                    <span t-if="record.urgente.raw_value" class="badge badge-danger">
-                                        <i class="fa fa-exclamation" aria-hidden="true"></i> URGENTE
-                                    </span>
-                                    <span t-if="record.realizada.raw_value" class="badge badge-success">
-                                        <i class="fa fa-check-circle" aria-hidden="true"></i> COMPLETADA
-                                    </span>
-                                </div>
+        <!-- Definir la vista Kanban -->
+    <record id="custom_project_task_kanban_view" model="ir.ui.view">
+        <field name="name">project.task.custom.kanban.view</field>
+        <field name="model">project.task</field>
+        <field name="arch" type="xml">
+            <!-- Definimos una vista Kanban agrupada por 'stage_id' -->
+            <kanban default_group_by="stage_id">
+                <field name="name" />
+                <field name="stage_id" />
+                <field name="user_ids" />
+                <field name="date_deadline" />
+                
+                <!-- Definir cómo se verá cada tarjeta en la vista Kanban -->
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <!-- Mostrar el nombre de la tarea -->
+                            <strong><field name="name"/></strong>
+                            <div>
+                                <!-- Mostrar la etapa (estado) de la tarea -->
+                                <span>Etapa: <field name="stage_id" /></span><br/>
+                                <!-- Mostrar los usuarios asignados -->
+                                <span>Asignado a: <field name="user_ids" /></span><br/>
+                                <!-- Mostrar la fecha límite -->
+                                <span>Fecha límite: <field name="date_deadline" /></span>
                             </div>
-                        </t>
-                    </templates>
-                </kanban>
-            </field>
-        </record>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
 
         <!-- Vista formulario -->
         <record id="lista_tareas_form" model="ir.ui.view">
