@@ -1,6 +1,5 @@
 <odoo>
     <data>
-
         <!-- Vista de lista -->
         <record id="lista_tareas_list" model="ir.ui.view">
             <field name="name">lista.tareas.list</field>
@@ -18,12 +17,51 @@
             </field>
         </record>
 
-        <!-- Vista formulario -->
+        <!--vista kanvan-->
+        <record id="lista_tareas_kanban" model="ir.ui.view">
+            <field name="name">lista.tareas.kanban</field>
+            <field name="model">lista_tareas.lista_tareas</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="tarea"/>
+                    <field name="prioridad"/>
+                    <field name="urgente"/>
+                    <field name="realizada"/>
+                    <field name="deadline"/>
+                    
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card oe_kanban_global_click">
+                                <strong><field name="tarea"/></strong>
+                                <div>
+                                    <span>Prioridad: <field name="prioridad"/></span><br/>
+                                    <span>Urgente: <field name="urgente" widget="boolean"/></span><br/>
+                                    <span>Realizada: <field name="realizada" widget="boolean"/></span><br/>
+                                    <span>Fecha límite: <field name="deadline"/></span>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Acción para vista Kanban -->
+        <record id='action_tareas_kanban' model='ir.actions.act_window'>
+            <field name="name">Mis tareas (Kanban)</field>
+            <field name="res_model">lista_tareas.lista_tareas</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="view_id" ref="lista_tareas_kanban"/>
+        </record>
+
+        <!-- formulario creacion de tareas-->
         <record id="lista_tareas_form" model="ir.ui.view">
             <field name="name">lista.tareas.form</field>
             <field name="model">lista_tareas.lista_tareas</field>
+
             <field name="arch" type="xml">
             
+
                 <form string="Tarea">
                     <sheet>
                         <group>
@@ -41,18 +79,51 @@
 
             </field>
         </record>
+        
 
-        <!-- Acción de ventana -->
+        <!-- parte de calendario, vista -->
+        <record id="tareas_calendar_view" model="ir.ui.view">
+            <field name="name">lista.tareas.calendar</field>
+            <field name="model">lista_tareas.lista_tareas</field>
+            <field name="arch" type="xml">
+                <!-- Usamos deadline como fecha para el calendario  que ya teniamos antes-->
+                <calendar date_start="deadline" color="prioridad">
+                    <field name="tarea"/>
+                    <field name="prioridad"/>
+                    <field name="urgente"/>
+                    <field name="realizada"/>
+                </calendar>
+            </field>
+        </record>
+
+
+
+        <!-- icono de intercambiar la vista del calendario-->
+        <record id='action_tareas_calendar' model='ir.actions.act_window'>
+            <field name="name">Mis tareas (Calendario)</field>
+            <field name="res_model">lista_tareas.lista_tareas</field>
+            <field name="view_mode">calendar,list,form</field>
+            <field name="view_id" ref="tareas_calendar_view"/>
+        </record>
+
+        <!-- Acción de ventana principal -->
+
         <record id="lista_tareas_action" model="ir.actions.act_window">
             <field name="name">Listado de tareas</field>
             <field name="res_model">lista_tareas.lista_tareas</field>
-            <field name="view_mode">list,form</field>
+            <field name="view_mode">list,form,kanban</field>
         </record>
 
-        <!-- Menú -->
+        <!-- Menús -->
         <menuitem name="Listado de tareas" id="lista_tareas_menu_root"/>
         <menuitem name="Opciones" id="lista_tareas_menu_opciones" parent="lista_tareas_menu_root"/>
         <menuitem name="Mostrar lista" id="lista_tareas_menu_list" parent="lista_tareas_menu_opciones" action="lista_tareas_action"/>
+       
+        <!-- Menu kanban -->
+        <menuitem name="Ver Kanban" id="lista_tareas_menu_kanban" parent="lista_tareas_menu_opciones" action="action_tareas_kanban"/>
+
+        <!-- Menu calenda -->
+        <menuitem name="Calendario" id="lista_tareas_menu_calendar" parent="lista_tareas_menu_opciones" action="action_tareas_calendar"/>
 
     </data>
 </odoo>

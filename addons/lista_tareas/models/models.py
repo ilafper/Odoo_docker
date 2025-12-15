@@ -1,10 +1,10 @@
 from odoo import models, fields, api
 
 class ListaTareas(models.Model):
-    #nombre y descripcion del modulo.
     _name = 'lista_tareas.lista_tareas'
     _description = 'Modelo de tareas'
-
+    
+    _rec_name = 'tarea'
     tarea = fields.Char(string='Tarea')
     prioridad = fields.Integer(string='Prioridad')
     urgente = fields.Boolean(string='Urgente', compute='_compute_urgente', store=True)
@@ -18,13 +18,10 @@ class ListaTareas(models.Model):
     usuario_reponsable = fields.Many2many('res.users', string='Responsables')
     
    
-    @api.depends('prioridad')
+    deadline = fields.Date(string='Fecha Límite')
 
+    @api.depends('prioridad')
     def _compute_urgente(self):
         for record in self:
-            if record.prioridad>10:
-                record.urgente = True
-            else:
-                record.urgente = False
-
-
+            record.urgente = record.prioridad > 10
+    

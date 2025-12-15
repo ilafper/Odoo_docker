@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- Definir la vista Kanban -->
+    
     <record id="custom_project_task_kanban_view" model="ir.ui.view">
         <field name="name">project.task.custom.kanban.view</field>
         <field name="model">project.task</field>
@@ -24,6 +25,14 @@
                                 <!-- Mostrar los usuarios asignados -->
                                 <span>Asignado a: <field name="user_ids" /></span><br/>
                                 <!-- Mostrar la fecha límite -->
+
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <strong><field name="name"/></strong>
+                            <div>
+                                <span>Etapa: <field name="stage_id" /></span><br/>
+                                <span>Asignado a: <field name="user_ids" /></span><br/>
                                 <span>Fecha límite: <field name="date_deadline" /></span>
                             </div>
                         </div>
@@ -50,3 +59,21 @@
     <menuitem id="menu_tareas_kanban" parent="menu_custom_top_level" action="action_tareas_kanban" sequence="10" />
 </odoo>
 
+
+   
+    <record id='action_tareas_kanban' model='ir.actions.act_window'>
+        <field name="name">Mis tareas (Kanban)</field>
+        <field name="res_model">project.task</field>
+        <field name="view_mode">kanban,form</field>
+    </record>
+
+    
+    <menuitem id="menu_custom_top_level" 
+              name="Mis tareas (Kanban)"/>
+
+    <menuitem id="menu_tareas_kanban" 
+              parent="menu_custom_top_level" 
+              action="action_tareas_kanban" 
+              sequence="10"/>
+
+</odoo>
