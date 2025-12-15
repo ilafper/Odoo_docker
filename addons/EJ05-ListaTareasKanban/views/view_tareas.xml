@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- Definir la vista Kanban -->
-    
     <record id="custom_project_task_kanban_view" model="ir.ui.view">
         <field name="name">project.task.custom.kanban.view</field>
         <field name="model">project.task</field>
@@ -41,6 +40,8 @@
             </kanban>
         </field>
     </record>
+
+
     <!-- Acción que muestra la vista Kanban de tareas -->
 
 
@@ -48,9 +49,7 @@
         <field name="name">Mis tareas (Kanban)</field>
         <field name="res_model">project.task</field>
         <field name="view_mode">kanban,tree,form</field>
-        <!-- Indicamos como contexto que la vista de referencia es la vista tareas_kanban_view.
-        mas información en https://www.odoo.com/documentation/17.0/developer/reference/user_interface/view_records.html
-        -->
+        
         <field name="context">{'kanban_view_ref': 'my_project.tareas_kanban_view'}</field>
     </record>
 

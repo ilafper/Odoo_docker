@@ -13,8 +13,7 @@ class ListaTareas(models.Model):
     #añadido lo de la fecha limite en la base de datos, el "fields.date" indica el tipo de dato que es el campo en este caso fecha.
     fecha_limite = fields.Date(string='Fecha Límite')
 
-    #añadir usuarios a la tarea.
-
+    #añadir usuarios a la tarea, relacion de muchosa muchos,
     usuario_reponsable = fields.Many2many('res.users', string='Responsables')
     
    
