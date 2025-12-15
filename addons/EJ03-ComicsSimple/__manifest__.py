@@ -29,7 +29,7 @@ Gestor de bibliotecas (Version Simple)
         #vista de socio
         'views/socio.xml',
         #vista ejemplar comic
-        'views/ejemplar_comic.xml',
+        'views/biblioteca_ejemplar.xml',
         
     ],
     # Fichero con data de demo si se inicializa la base de datos con "demo data" (No incluido en ejemplo)

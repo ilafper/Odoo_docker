@@ -31,6 +31,7 @@ class EjemplarComic(models.Model):
           if cada_registro.fecha_prestamo and cada_registro.fecha_prestamo > date.today():
              #mensaje de error
              raise ValidationError("La fecha de prestamo no puede ser posterior al día actual.")
+    
 
     @api.constrains('fecha_devolucion')
     def comprobar_fecha_devolucion(self):

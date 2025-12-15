@@ -14,7 +14,7 @@
     <!-- Simple menu item, sin más utilidad que la didáctica -->
     <menuitem name="Mi biblioteca (Simple)" id="biblioteca_base_menu" />
     <menuitem name="Comics" id="biblioteca_comic_menu" parent="biblioteca_base_menu" action="biblioteca_comic_action"/>
-
+    
     <!-- Definición de la Vista formulario -->
     <record id="biblioteca_comic_view_form" model="ir.ui.view">
         <field name="name">Formulario de Comic de la biblioteca</field>
