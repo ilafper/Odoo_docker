@@ -21,19 +21,14 @@
         <field name="model">biblioteca.comic</field>
         <field name="arch" type="xml">
             <form>
-                <!-- Creamos un boton "archivar". 
-                    Al llamarse "archivar" se encarga de llamar al metodo "archivar"
-                    del modelo del que hereda "biblioteca_comic".
-                    Este metodo archivar cambie el estado del atributo del modelo "activo"
-                -->
+                
                 <header>
                     <button type="object" name="archivar" string="Archivar Comics"/>
                 </header>
                 <group>
                     <group>
                         <field name="nombre"/>
-                        <!-- Utilizamos el Widget "many2many_tags" para que la relación
-                            muchos a muchos se vea en la interfaz como etiquetas -->
+                       
                         <field name="autor_ids" widget="many2many_tags"/>
                         <field name="estado"/>
                         <field name="paginas"/>
@@ -42,11 +37,7 @@
                     <group>
                         <field name="precio"/>
                         <field name="fecha_publicacion"/>
-                        <!-- con widget="image" class="oe_avatar" preparamos el aspecto de como se verá este campo 
-                            NOTA: en este ejemplo, el modelo lo guarda como fichero (field.Binary) y así forzamos a que parezca una imagen
-                            pero a partir de Odoo 13, se puede usar field.Image, que entre otras ventajas
-                            incluye recorte de imagen subida
-                        --> 
+                       
                         <field name="portada" widget="image" class="oe_avatar"/>
                         <field name="valoracion_lector"/>
                     </group>
@@ -72,19 +63,6 @@
         </field>
     </record>
 
-    <!-- Definición de la vista busqueda-->
-    <record id="biblioteca_comic_view_search" model="ir.ui.view">
-        <field name="name">Búsqueda de Comics en la biblioteca</field>
-        <field name="model">biblioteca.comic</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="nombre"/>
-                <field name="autor_ids"/>
-                <!-- Indicamos que para si filtramos por los del dominio "autor_ids=false" 
-                se muestre el texto "Sin autor"-->
-                <filter string="Sin autor" name="sin_autor" domain="[('autor_ids','=',False)]"/>
-            </search>
-        </field>
-    </record>
+    
 
 </odoo>

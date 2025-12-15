@@ -32,13 +32,14 @@
         <field name="name">Lista de Ejemplares</field>
         <field name="model">biblioteca.ejemplar</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="comic_id"/>
                 <field name="socio_id"/>
                 <field name="fecha_prestamo"/>
                 <field name="fecha_devolucion"/>
                 <field name="estado"/>
-            </tree>
+            </list>
         </field>
     </record>
 </odoo>
+

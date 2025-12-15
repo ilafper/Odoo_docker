@@ -5,7 +5,7 @@ from datetime import date
 
 
 class EjemplarComic(models.Model):
-    _name:'biblioteca.ejemplar'
+    _name='biblioteca.ejemplar'
     
     _description = 'Ejemplar de Comic para prestamo'
 
