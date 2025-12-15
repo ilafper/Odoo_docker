@@ -2,8 +2,5 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 acl_comic_default,Acceso lectura comics,model_biblioteca_comic,,1,0,0,0
 acl_comic_bibliotecario,Acceso total comics,model_biblioteca_comic,base.group_user,1,1,1,1
 acl_socio_default,Acceso total socios,model_biblioteca_socio,,1,1,1,1
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 acl_ejemplar_default,Acceso total ejemplares,model_biblioteca_ejemplar,,1,1,1,1
-
-
 
