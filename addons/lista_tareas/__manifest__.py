@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #Este es el archivo principal
 {
-    'name': "lista_tareas_desesperacion2",
+    'name': "lista_tareas_Practica4",
     'summary': "Sencilla lista de tareas",
     'description': """
         Módulo para gestionar tareas simples con prioridad y estado.

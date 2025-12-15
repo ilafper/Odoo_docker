@@ -6,6 +6,7 @@ class Socio(models.Model):
     _description = 'Socio biblioteca prueba'
 
     _rec_name = 'nombre'
+    
     #campo de nombre del socio
     nombre = fields.Char(string='Nombre')
     #campo apellidd del socio

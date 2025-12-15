@@ -14,7 +14,7 @@
     <record id="biblioteca_ejemplar_view_form" model="ir.ui.view">
         <field name="name">Formulario de Ejemplar</field>
         <field name="model">biblioteca.ejemplar</field>
-        <field name="arch" type="xml">
+        <field name="a  rch" type="xml">
             <form>
                 <group>
                     <field name="comic_id"/>

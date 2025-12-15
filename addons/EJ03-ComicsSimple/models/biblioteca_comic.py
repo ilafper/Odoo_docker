@@ -3,8 +3,6 @@ from datetime import timedelta
 
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
-
-
 # Modelo base, creado como modelo abstracto 
 # Este modelo lo heredarara el modelo BibliotecaComic
 # Y se ha creado puramente con fin didáctico para ver herencia entre modelos
@@ -60,10 +58,8 @@ class BibliotecaComic(models.Model):
     descripcion = fields.Html('Descripción', sanitize=True, strip_style=False)
     #Dato binario, para guardar un binario (en la vista indicaremos que es una imagen) con la portada del comic
     portada = fields.Binary('Portada Comic')
-
     #Fecha de publicación
     fecha_publicacion = fields.Date('Fecha publicación')
-
     #Precio del libro    
     precio = fields.Float('Precio')
     #Numero de paginas. 
@@ -79,7 +75,7 @@ class BibliotecaComic(models.Model):
         #para cada empresa ponga un valor distintos
         #Esta colocado con fin didactico a false 
         company_dependent=False)
- 
+
     #Valoración lector, indicando como son los datos
     valoracion_lector = fields.Float(
         'Valoración media lectores',
