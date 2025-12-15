@@ -16,8 +16,6 @@ class ListaTareas(models.Model):
     #añadir usuarios a la tarea, relacion de muchosa muchos,
     usuario_reponsable = fields.Many2many('res.users', string='Responsables')
     
-   
-    deadline = fields.Date(string='Fecha Límite')
 
     @api.depends('prioridad')
     def _compute_urgente(self):
