@@ -6,9 +6,9 @@
         <field name="name">Biblioteca de Comics</field>
         <!-- Indicamos a que modelo aplica -->
         <field name="res_model">biblioteca.comic</field>
-        <!-- Indicamos que los comics pueden verse en tree para el listado,
+        <!-- Indicamos que los comics pueden verse en list para el listado,
             y en form para la creación/edición -->
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Simple menu item, sin más utilidad que la didáctica -->
@@ -58,16 +58,17 @@
         </field>
     </record>
 
-    <!-- Definición de la vista Tree -->
-    <record id="biblioteca_comic_view_tree" model="ir.ui.view">
+    <!-- Definición de la vista List -->
+    <record id="biblioteca_comic_view_list" model="ir.ui.view">
         <field name="name">Lista de Comics de la biblioteca</field>
         <field name="model">biblioteca.comic</field>
         <field name="arch" type="xml">
-            <tree>
+        <!-- Cambiara los tree por los list -->
+            <list>
                 <field name="nombre"/>
                 <field name="fecha_publicacion"/>                        
                 <field name="estado"/>
-            </tree>
+            </list>
         </field>
     </record>
 
