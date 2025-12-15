@@ -7,7 +7,8 @@ Gestor de bibliotecas (Version Simple)
 ==============
     """,  
 
-    #Indicamos que es una aplicación
+    #Indicamos que es una aplicación.
+
     'application': True,
     'author': "Sergi García",
     'website': "http://apuntesfpinformatica.es",
@@ -27,6 +28,9 @@ Gestor de bibliotecas (Version Simple)
         'views/biblioteca_comic.xml',
         #vista de socio
         'views/socio.xml',
+        #vista ejemplar comic
+        'views/ejemplar_comic.xml',
+        
     ],
     # Fichero con data de demo si se inicializa la base de datos con "demo data" (No incluido en ejemplo)
     # 'demo': [
