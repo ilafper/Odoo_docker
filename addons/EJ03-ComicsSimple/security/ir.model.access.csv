@@ -1,7 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-acl_comic,biblioteca.comic_default,model_biblioteca_comic,,1,0,0,0
-acl_comic_bibliotecario,biblioteca.comic_bibliotecario,model_biblioteca_comic,grupo_bibliotecario,1,1,1,1
+acl_comic_default,Acceso lectura comics,model_biblioteca_comic,,1,0,0,0
+acl_comic_bibliotecario,Acceso total comics,model_biblioteca_comic,base.group_user,1,1,1,1
+acl_socio_default,Acceso total socios,model_biblioteca_socio,,1,1,1,1
 
-
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-acl_socio,biblioteca.socio_default,model_biblioteca_socio,,1,1,1,1
