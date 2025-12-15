@@ -1,7 +1,7 @@
 from odoo import models, fields, api
 
 
-class Socioo(models.Model):
+class Socio(models.Model):
     _name = 'biblioteca.socio'
     _description = 'Socio biblioteca prueba'
 

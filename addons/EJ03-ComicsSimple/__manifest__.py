@@ -14,7 +14,7 @@ Gestor de bibliotecas (Version Simple)
     'category': 'Tools',
     'version': '0.1',
     'depends': ['base'],
-
+    
     'data': [
         #Estos dos primeros ficheros:
         #1) El primero indica grupo de seguridad basado en rol
