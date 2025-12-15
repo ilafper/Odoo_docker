@@ -24,6 +24,7 @@ Gestor de bibliotecas (Version Simple)
         #Y en www.odoo.yenthevg.com/creating-security-groups-odoo/ 
         'security/groups.xml',
         'security/ir.model.access.csv',
+        
         #Cargamos la vista de la biblioteca de comics
         'views/biblioteca_comic.xml',
         #vista de socio
