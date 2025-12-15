@@ -10,9 +10,9 @@ class EjemplarComic(models.Model):
     _description = 'Ejemplar de Comic para prestamo'
 
     #relacion de muchos a muchos , un comic puede tener varios ejemplaress
-    comic_id=fields.Many2one('biblioteca.comic', String='Comic', required=True)
+    comic_id=fields.Many2one('biblioteca.comic', string='Comic', required=True)
 
-    socio_id= fields.Many2one('biblioteca.socio', Strinf='Socio')
+    socio_id= fields.Many2one('biblioteca.socio', string='Socio')
 
     fecha_prestamo= fields.Date('Fecha de pretamo')
 

@@ -16,6 +16,7 @@
     </record>
 
     <!-- Vista lista -->
+    
     <record id="biblioteca_socio_view_list" model="ir.ui.view">
         <field name="name">Lista de Socios</field>
         <field name="model">biblioteca.socio</field>
@@ -27,6 +28,7 @@
             </list>
         </field>
     </record>
+
 
     <!-- Acción para abrir el modelo -->
     <record id="biblioteca_socio_action" model="ir.actions.act_window">

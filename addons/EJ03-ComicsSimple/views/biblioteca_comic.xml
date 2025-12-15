@@ -42,6 +42,7 @@
                         <field name="valoracion_lector"/>
                     </group>
                 </group>
+                
                 <group>
                     <field name="descripcion"/>
                 </group>
@@ -63,6 +64,5 @@
         </field>
     </record>
 
-    
 
 </odoo>
