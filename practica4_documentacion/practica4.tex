@@ -1,0 +1,254 @@
+\documentclass[12pt,a4paper]{article}
+
+% Paquetes básicos
+\usepackage[utf8]{inputenc}    % Codificación UTF-8
+\usepackage[T1]{fontenc}       % Codificación de fuente
+\usepackage[spanish]{babel}    % Idioma español
+\usepackage{geometry}          % Márgenes
+\usepackage{graphicx}          % Insertar imágenes
+\usepackage{amsmath, amssymb}  % Símbolos matemáticos
+\usepackage{booktabs}          % Tablas con mejor estilo
+\usepackage{float}
+
+% Hipervínculos
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue]{hyperref}
+
+% Márgenes
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+
+\title{PRÁCTICA 4 ODOO}
+
+\author{Iván Alfaya Pérez}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{imagenes/portada_si.png}
+\label{fig:iconos_intercambio}
+\end{figure}
+
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introducción}
+
+El objetivo de esta práctica es aplicar los conocimientos adquiridos sobre modelos, relaciones y vistas en el desarrollo de aplicaciones. Para ello, se trabajará en la implementación de cuatro actividades que abarcan diferentes contextos, como la gestión de tareas, bibliotecas de cómics, pacientes y médicos, y ciclos formativos. Se debe entregar una documentación con los resultados obtenidos, apoyada mediante capturas de pantalla.
+
+\section{Actividad 01}
+
+Para esta actividad se modificará el módulo de tareas creado en la practica anterior con el fin de que disponga de una vista Kanban y otra vista de calendario.\\
+
+En mi caso, solo trabajaré sobre la vista definida en el archivo \texttt{view.xml}. Lo más idóneo sería crear una vista para cada funcionalidad con el fin de mantener el código modularizado. A continuación, se muestra lo que se añadirá:\\
+
+
+Parte de la vista de kanvan:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{imagenes/lista_kanvan.png}
+\caption{Ejemplo de vista Kanban}
+\label{fig:kanban_lista}
+\end{figure}
+
+Como se puede observar en la imagen, se añade la estructura necesaria para mostrar las tareas en formato Kanban.
+
+
+A continuación, se incorpora la parte que indica a Odoo qué modelo debe utilizar y qué vistas se deben mostrar al abrir la acción correspondiente.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{imagenes/iconos_kanvan_intercambio.png}
+\caption{Iconos de intercambio de vistas}
+\label{fig:iconos_intercambio}
+\end{figure}
+
+
+Como se puede comprobar, disponemos de varios iconos para intercambiar entre vistas. En cada sección tendremos uno; por ejemplo, cuando estemos en la vista Kanban aparecerá su icono correspondiente. Por tanto, es necesario crear uno para cada vista: lista de tareas, calendario y Kanban.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{imagenes/iconos.png}
+\caption{Iconos de intercambio entre vista normal, Kanban y calendario}
+\label{fig:iconos}
+\end{figure}
+
+Finalmente, se añade el \textit{menu item}, que es el enlace que el usuario visualiza y utiliza para abrir la acción.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{imagenes/menukanvan.png}
+\caption{MenuItem de Kanban}
+\label{fig:menu_kanban}
+\end{figure}
+
+\subsection*{Ejemplo}
+
+A continuación, se muestra un ejemplo de una tarea en la vista normal.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{imagenes/tarea_normal.png}
+\caption{Vista normal de una tarea}
+\label{fig:tarea_normal}
+\end{figure}
+
+Vista Kanban:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{imagenes/tarea_kanvan.png}
+\caption{Vista Kanban de una tarea}
+\label{fig:tarea_kanban}
+\end{figure}
+
+Vista calendario:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{imagenes/tarea_kalendario.png}
+\caption{Vista calendario de una tarea}
+\label{fig:tarea_calendario}
+\end{figure}
+
+
+Básicamente, para crear una vista Kanban es necesario definir, en primer lugar, la vista que indica cómo se mostrarán las tareas en este formato. Además, se debe crear la acción, que se encarga de especificar qué modelo se va a abrir, qué vistas se pueden intercambiar (Kanban, lista, formulario y calendario) y cuál será la vista inicial, en este caso la Kanban. Por último, se añade el menu item, que actúa como el enlace mediante el cual el usuario accede a dicha vista.
+El de calendario seguiría esta estructura.
+
+
+\section{Actividad 02}
+
+Para este ejercicio se utiliza el ejemplo del módulo de biblioteca disponible en el repositorio de GitHub que se nos facilitó: \href{[https://github.com/sergarb1/OdooModulosEjemplos}{enlace](https://github.com/sergarb1/OdooModulosEjemplos}{enlace) al repositorio}. La parte escogida es \texttt{EJ03-ComicsSimple}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{imagenes/estructura biblioteca.png}
+\caption{Estructura del módulo de biblioteca}
+\label{fig:estructura_biblioteca}
+\end{figure}
+
+Los archivos base incluidos eran el modelo \texttt{biblioteca\_comic.py} y el archivo XML \texttt{biblioteca\_comics.xml}.
+
+Se crearon dos archivos XML adicionales:
+
+\begin{itemize}
+\item \texttt{biblioteca\_ejemplar.xml}
+\item \texttt{socio.xml}
+\end{itemize}
+
+Y los modelos correspondientes:
+
+\begin{itemize}
+\item \texttt{biblioteca\_ejemplar.py}
+\item \texttt{biblioteca\_socio.py}
+\end{itemize}
+
+\textbf{Importante:} es necesario añadir en el archivo \texttt{manifest} del módulo las nuevas vistas que se han creado.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{imagenes/mainifest_biblioteca.png}
+\caption{Manifest del módulo de biblioteca}
+\label{fig:manifest_biblioteca}
+\end{figure}
+
+\subsection*{Modelo biblioteca ejemplar}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{imagenes/biblioteca_ejemplar.png}
+\caption{Modelo biblioteca ejemplar}
+\label{fig:modelo_ejemplar}
+\end{figure}
+
+En la imagen se puede observar el modelo del ejemplar, donde se definen relaciones de muchos a uno. Un cómic puede tener varios ejemplares, y cada ejemplar puede estar asociado a un socio. Además, se incluyen los campos de fecha de préstamo, fecha de devolución y estado.
+
+También se implementan comprobaciones para asegurar que la fecha de préstamo no sea posterior a la fecha actual y que la fecha de devolución no sea anterior a la fecha actual.
+
+\subsection*{Vista ejemplar}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{imagenes/vista_ejemplar.png}
+\caption{Vista biblioteca ejemplar}
+\label{fig:vista_ejemplar}
+\end{figure}
+
+\subsection*{Modelo biblioteca socio}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{imagenes/biblioteca_socio.png}
+\caption{Modelo biblioteca socio}
+\label{fig:modelo_socio}
+\end{figure}
+
+En este modelo se definen los campos correspondientes a los socios: nombre, apellidos y un identificador.
+
+\subsection*{Vista socio}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{imagenes/vista_socio.png}
+\caption{Vista biblioteca socio}
+\label{fig:vista_socio}
+\end{figure}
+
+\subsection*{Ejemplos de uso}
+
+Creación de un cómic:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{biblioteca_comics/comic_creado.png}
+\caption{Creación de un cómic}
+\label{fig:comic_creado}
+\end{figure}
+
+En esta imagen se puede observar la creación de un nuevo cómic con sus campos correspondientes.
+
+Resultado:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{biblioteca_comics/creacion_comis.png}
+\caption{Listado de cómics creados}
+\label{fig:listado_comics}
+\end{figure}
+
+Creación de un nuevo socio:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{biblioteca_comics/imagen2.png}
+\caption{Creación de un socio}
+\label{fig:socio_creado}
+\end{figure}
+
+Creación de un ejemplar:
+
+Se asigna el cómic creado anteriormente y el socio correspondiente, junto con los campos de fecha de préstamo y fecha de devolución.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{biblioteca_comics/ejemplar1.png}
+\caption{Creación de un ejemplar}
+\label{fig:ejemplar_creacion}
+\end{figure}
+
+Resultado del ejemplar creado:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{biblioteca_comics/ejemplar2.png}
+\caption{Ejemplar creado correctamente}
+\label{fig:ejemplar_resultado}
+\end{figure}
+
+\end{document}
