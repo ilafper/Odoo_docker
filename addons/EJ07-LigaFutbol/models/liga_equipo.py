@@ -53,13 +53,12 @@ class LigaEquipo(models.Model):
             record.jugados = record.victorias + record.empates + record.derrotas
 
     
-    puntos= fields.Integer( compute="_compute_puntos",default=0, store=True)
+    puntos = fields.Integer(default=0)
     
     @api.depends('victorias','empates')
     def _compute_puntos(self):
         for record in self:
-            record.puntos = record.victorias * 3 + record.empates
-
+            pass
     
     #Goles a favor y en contra
 
@@ -80,3 +79,4 @@ class LigaEquipo(models.Model):
                 raise models.ValidationError('La fecha de fundación del club debe ser anterior a la actual')
 
 
+   
