@@ -68,6 +68,7 @@ class LigaPartido(models.Model):
             recordEquipo.derrotas = 0
             recordEquipo.goles_a_favor = 0
             recordEquipo.goles_en_contra = 0
+            
             recordEquipo.puntos = 0
             
             for recordPartido in self.env['liga.partido'].search([]):
@@ -79,7 +80,7 @@ class LigaPartido(models.Model):
                     if recordPartido.goles_casa > recordPartido.goles_fuera:
                         recordEquipo.victorias = recordEquipo.victorias + 1
 
-                        # Reglas especiales - CORREGIR INDENTACIÓN
+                        # Reglas especiales
                         if (recordPartido.goles_casa - recordPartido.goles_fuera) >= 4:
                             recordEquipo.puntos = recordEquipo.puntos + 4
                         else:
@@ -91,7 +92,7 @@ class LigaPartido(models.Model):
                         
                         if (recordPartido.goles_fuera - recordPartido.goles_casa) >= 4:
                             recordEquipo.puntos = recordEquipo.puntos - 1
-                        # Derrota normal: no se hace nada (0 puntos)
+                        
                         
                     else:
                         # Empate
@@ -120,7 +121,7 @@ class LigaPartido(models.Model):
                         # verificar la derrota especial
                         if (recordPartido.goles_casa - recordPartido.goles_fuera) >= 4:
                             recordEquipo.puntos = recordEquipo.puntos - 1
-                        # Derrota normal: no se hace nada (0 puntos)
+                        
                             
                     else:
                         # Empate
