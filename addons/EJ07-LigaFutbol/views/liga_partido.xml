@@ -3,9 +3,7 @@
 
     <record id='liga_partido_action' model='ir.actions.act_window'>
         <field name="name">Partidos de la liga</field>
-        <!-- Indicamos vistas para este modelo (categoria) -->
         <field name="res_model">liga.partido</field>
-        <!-- Indicamos que este modelo se puede ver en kanban, list y form -->
         <field name="view_mode">kanban,list,form</field>
     </record>
 
@@ -17,80 +15,66 @@
         <field name="model">liga.partido</field>
         <field name="arch" type="xml">
             <form>
+                
                 <group>
                     <group>
                         <field name="equipo_casa" />
                         <field name="goles_casa" />
                     </group>
-
                     <group>
                         <field name="equipo_fuera" />
                         <field name="goles_fuera" />
                     </group>
-
                 </group>
             </form>
         </field>
     </record>
 
-    <!-- Vista list -->
+    <!-- Vista list CORREGIDA -->
     <record id="liga_partido_view_list" model="ir.ui.view">
         <field name="name">Lista de partidos de la liga</field>
-        <field name="model">liga.partido</field>
-        <field name="arch" type="xml">
-            <list>
-                <!-- Indicamos que atributos usaremos al hacer la vista list -->
-                <field name="equipo_casa" />
-                <field name="goles_casa" />
-                <field name="equipo_fuera" />
-                <field name="goles_fuera" />
-
-            </list>
+        <field name="model">liga.partido</field> 
+    
+            <!-- Campos -->
+            <field name="equipo_casa" />
+            <field name="goles_casa" />
+            <field name="equipo_fuera" />
+            <field name="goles_fuera" />
+     
         </field>
     </record>
-
 
     <!-- Vista Kanban -->
     <record id="liga_partido_view_kanban" model="ir.ui.view">
         <field name="name">Lista de partidos de la liga</field>
         <field name="model">liga.partido</field>
         <field name="arch" type="xml">
-            <!-- Agrupamos por el atributo "parent_id"-->
             <kanban>
-                <!-- Indicamos que atributos usaremos al hacer la vista Kanban -->
-
+                
                 <field name="equipo_casa" />
                 <field name="goles_casa" />
                 <field name="equipo_fuera" />
                 <field name="goles_fuera" />
-
-                <!-- Plantilla QWeb para indicar como es la tarjeta Kanban-->
-
+                
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click">
                             <div class="oe_kanban_content">
                                 <div class="oe_kanban_card">
                                     <div class="text-muted">
-                                        <b>
-                                            <p>- Resultado -</p>
-                                        </b>
+                                        <b><p>- Resultado -</p></b>
                                     </div>
-                                    <div >
-                                        <field name="equipo_casa" /> :
-                                        <field name="goles_casa" />
+                                    <div>
+                                        <field name="equipo_casa" /> : <field name="goles_casa" />
                                     </div>
                                 </div>
                                 <div>
-                                    <field name="equipo_fuera" /> :
-                                    <field name="goles_fuera" />
+                                    <field name="equipo_fuera" /> : <field name="goles_fuera" />
                                 </div>
                             </div>
-                        
                         </div>
                     </t>
                 </templates>
-
             </kanban>
         </field>
     </record>

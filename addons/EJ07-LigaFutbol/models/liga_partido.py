@@ -33,6 +33,12 @@ class LigaPartido(models.Model):
     #Goles equipo de casa
     goles_fuera= fields.Integer()
     
+
+
+
+
+
+
     #Constraints de atributos
     @api.constrains('equipo_casa')
     def _check_mismo_equipo_casa(self):
@@ -41,7 +47,6 @@ class LigaPartido(models.Model):
                 raise models.ValidationError('Debe seleccionarse un equipo local.')
             if record.equipo_casa == record.equipo_fuera:
                 raise models.ValidationError('Los equipos del partido deben ser diferentes.')
-
 
      #Constraints de atributos
     @api.constrains('equipo_fuera')
@@ -68,7 +73,6 @@ class LigaPartido(models.Model):
             recordEquipo.derrotas = 0
             recordEquipo.goles_a_favor = 0
             recordEquipo.goles_en_contra = 0
-            
             recordEquipo.puntos = 0
             
             for recordPartido in self.env['liga.partido'].search([]):
@@ -80,7 +84,7 @@ class LigaPartido(models.Model):
                     if recordPartido.goles_casa > recordPartido.goles_fuera:
                         recordEquipo.victorias = recordEquipo.victorias + 1
 
-                        # Reglas especiales
+                        # Reglas especiales, comprobar si hay diferencia de 4 en los goles, si no se palica la puntuacion por defecto
                         if (recordPartido.goles_casa - recordPartido.goles_fuera) >= 4:
                             recordEquipo.puntos = recordEquipo.puntos + 4
                         else:
@@ -110,6 +114,8 @@ class LigaPartido(models.Model):
                     if recordPartido.goles_casa < recordPartido.goles_fuera:
                         recordEquipo.victorias = recordEquipo.victorias + 1
                     
+
+                        # lo mismo que lo anterior pero en el equipo de fuera o visitante
                         if (recordPartido.goles_fuera - recordPartido.goles_casa) >= 4:
                             recordEquipo.puntos = recordEquipo.puntos + 4
                         else:
@@ -158,3 +164,13 @@ class LigaPartido(models.Model):
         self.actualizoRegistrosEquipo()
         #hago lo normal del metodo create
         return result
+    
+    #funcione sprueba botones de sumar goles
+
+    def sumar_2_goles_local(self):
+        print("sisisissiis local")
+
+
+        
+    def sumar_2_goles_visitante(self):
+        print("sisisissiis visitante")
