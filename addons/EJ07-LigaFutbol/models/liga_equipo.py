@@ -55,10 +55,6 @@ class LigaEquipo(models.Model):
     
     puntos = fields.Integer(default=0)
     
-    @api.depends('victorias','empates')
-    def _compute_puntos(self):
-        for record in self:
-            pass
     
     #Goles a favor y en contra
 
