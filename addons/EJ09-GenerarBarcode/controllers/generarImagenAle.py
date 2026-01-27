@@ -39,7 +39,7 @@ class ImagenAleatoria(http.Controller):
 
 
         buffer = io.BytesIO()
-        #imagen.save(buffer, format='PNG')  
+        imagen.save(buffer, format='PNG')  
         img_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
 
         return f'<img src="data:image/png;base64,{img_base64}">'
