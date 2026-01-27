@@ -32,16 +32,17 @@ class ImagenAleatoria(http.Controller):
 
         for eje_x in range(ancho):
             for eje_y in range(alto):
-                rojo=random.randit(0,255)
-                verde=random.randit(0,255)
-                azul=random.randit(0,255)
+                rojo=random.randint(0,255)
+                verde=random.randint(0,255)
+                azul=random.randint(0,255)
                 pixeles[eje_x, eje_y] = (rojo, verde,azul)
 
 
         buffer = io.BytesIO()
+        #imagen.save(buffer, format='PNG')  
         img_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
 
-        return img_base64
+        return f'<img src="data:image/png;base64,{img_base64}">'
 
 
     
