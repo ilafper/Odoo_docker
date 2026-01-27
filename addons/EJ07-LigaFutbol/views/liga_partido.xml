@@ -3,11 +3,12 @@
 
     <record id='liga_partido_action' model='ir.actions.act_window'>
         <field name="name">Partidos de la liga</field>
-        <!-- Indicamos vistas para este modelo (categoria) -->
         <field name="res_model">liga.partido</field>
-        <!-- Indicamos que este modelo se puede ver en kanban, list y form -->
         <field name="view_mode">kanban,list,form</field>
     </record>
+
+    <menuitem name="Partidos de la liga" id="liga_partido_menu" parent="liga_base_menu" action="liga_partido_action" />
+
 
     <menuitem name="Partidos de la liga" id="liga_partido_menu" parent="liga_base_menu" action="liga_partido_action" />
 
@@ -17,96 +18,88 @@
         <field name="model">liga.partido</field>
         <field name="arch" type="xml">
             <form>
-                <header>
-                    
-                    <button name="suma_2_goles_casa" type="object" string="+2 Goles Casa" class="btn-primary"/>
-                    <button name="suma_2_goles_visitante" type="object" string="+2 Goles Fuera" class="btn-secondary"/>
-                </header>
-
-                <group>
+                <!-- <header>
+                    BOTONES EN FORMULARIO - DEBEN COINCIDIR CON MÉTODOS EN PYTHON
+                    <button name="sumar_2_goles_local" type="object" string="+2 Goles Casa" class="btn-primary"/>
+                    <button name="sumar_2_goles_visitante" type="object" string="+2 Goles Fuera" class="btn-secondary"/>
+                </header> 
+                -->
+                
+                <sheet>
                     <group>
-                        <field name="equipo_casa" />
-                        <field name="goles_casa" />
+                        <group>
+                            <field name="equipo_casa" />
+                            <field name="goles_casa" />
+                        </group>
+                        <group>
+                            <field name="equipo_fuera" />
+                            <field name="goles_fuera" />
+                        </group>
                     </group>
-
-                    <group>
-                        <field name="equipo_fuera" />
-                        <field name="goles_fuera" />
-                    </group>
-
-                </group>
+                </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Vista list -->
+    <!-- Vista LISTA (CORREGIDA) -->
     <record id="liga_partido_view_list" model="ir.ui.view">
         <field name="name">Lista de partidos de la liga</field>
         <field name="model">liga.partido</field>
         <field name="arch" type="xml">
             <list>
-                <header>
-                    
-                    <button name="suma_2_goles_casa" type="object" string="+2 Goles Casa" class="btn-primary"/>
-                    <button name="suma_2_goles_visitante" type="object" string="+2 Goles Fuera" class="btn-secondary"/>
-                </header>
-                <!-- Indicamos que atributos usaremos al hacer la vista list -->
+                <!-- BOTONES EN VISTA LISTA - VAN DIRECTO AQUÍ, NO EN HEADER
+                <button name="sumar_2_goles_local" type="object" string="+2 Goles Casa" class="btn-primary"/>
+                <button name="sumar_2_goles_visitante" type="object" string="+2 Goles Fuera" class="btn-secondary"/> -->
+                
+                <!-- Campos -->
                 <field name="equipo_casa" />
                 <field name="goles_casa" />
                 <field name="equipo_fuera" />
                 <field name="goles_fuera" />
-
             </list>
         </field>
     </record>
 
-
-    <!-- Vista Kanban -->
+    <!-- Vista Kanban (CORREGIDA) -->
     <record id="liga_partido_view_kanban" model="ir.ui.view">
-        <field name="name">Lista de partidos de la liga</field>
+        <field name="name">Kanban Partidos</field>
         <field name="model">liga.partido</field>
         <field name="arch" type="xml">
-            <!-- Agrupamos por el atributo "parent_id"-->
             <kanban>
-                <header>
-                        
-                        <button name="suma_2_goles_casa" type="object" string="+2 Goles Casa" class="btn-primary"/>
-                        <button name="suma_2_goles_visitante" type="object" string="+2 Goles Fuera" class="btn-secondary"/>
-                </header>
-                <!-- Indicamos que atributos usaremos al hacer la vista Kanban -->
-
+                <!-- Campos -->
                 <field name="equipo_casa" />
                 <field name="goles_casa" />
                 <field name="equipo_fuera" />
                 <field name="goles_fuera" />
 
-                <!-- Plantilla QWeb para indicar como es la tarjeta Kanban-->
-
+                <!-- Plantilla -->
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click">
                             <div class="oe_kanban_content">
                                 <div class="oe_kanban_card">
                                     <div class="text-muted">
-                                        <b>
-                                            <p>- Resultado -</p>
-                                        </b>
+                                        <b><p>- Resultado -</p></b>
                                     </div>
-                                    <div >
-                                        <field name="equipo_casa" /> :
-                                        <field name="goles_casa" />
+                                    <div>
+                                        <field name="equipo_casa" /> : <field name="goles_casa" />
                                     </div>
                                 </div>
                                 <div>
-                                    <field name="equipo_fuera" /> :
-                                    <field name="goles_fuera" />
+                                    <field name="equipo_fuera" /> : <field name="goles_fuera" />
                                 </div>
+                                
+                                <!-- BOTONES DENTRO DE CADA TARJETA KANBAN
+                                <div class="oe_kanban_footer" style="margin-top: 10px; padding: 5px;">
+                                    <button name="sumar_2_goles_local" type="object" string="+2 Casa" 
+                                            class="oe_kanban_action oe_kanban_action_a btn btn-primary btn-sm"/>
+                                    <button name="sumar_2_goles_visitante" type="object" string="+2 Fuera" 
+                                            class="oe_kanban_action oe_kanban_action_a btn btn-secondary btn-sm"/>
+                                </div> -->
                             </div>
-                        
                         </div>
                     </t>
                 </templates>
-
             </kanban>
         </field>
     </record>
