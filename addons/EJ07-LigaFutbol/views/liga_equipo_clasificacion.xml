@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- list View -->
+
+
+    <!-- list(list) View -->
     <record id="liga_equipo_clasificacion_view_list" model="ir.ui.view">
         <field name="name">Lista de Equipos de la liga</field>
         <field name="model">liga.equipo</field>
-         <!-- botones nuevos prueba-->
-
-
-
-
         <field name="arch" type="xml">
-            
-
-
-
-
             <!-- Indicamos el orden para poner la clasificacion-->
             <list default_order="puntos desc">
                 <field name="escudo" widget="image" class="oe_avatar" />
@@ -35,13 +27,11 @@
     <record id="liga_equipo_clasificacion_view_search" model="ir.ui.view">
         <field name="name">Búsqueda de Equipos por nombre</field>
         <field name="model">liga.equipo</field>
-        
         <field name="arch" type="xml">
             <search>
                 <field name="nombre" />
             </search>
         </field>
-
     </record>
 
 
