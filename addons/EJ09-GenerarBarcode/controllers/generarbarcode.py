@@ -50,3 +50,12 @@ class GenerarBarcode(http.Controller):
 
         # Devolvemos una pequeña vista HTML que muestra la imagen generada
         return '<div><img src="data:image/png;base64,' + img_str + '"/></div>'
+
+    
+    
+    
+    #Se puede probar accediendo a http://localhost:9001/pruebasimple
+    @http.route('/pruebasimple', auth='public', type='http')
+    def prueba_simple(self):
+        """Prueba MÍNIMA para ver si funciona algo"""
+        return "<h1>✅ ¡HOLA MUNDO!</h1><p>Si ves esto, el controller funciona</p>"
