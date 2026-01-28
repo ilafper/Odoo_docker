@@ -68,6 +68,7 @@ class Main(http.Controller):
 
                     cada_empate.unlink()
                 # respuesta si hay partidos empatados
+                
                 respuesta={
                     "menssage": "se han eliminado los partidos en empate",
                     "total partidos eliminados": total_empates,
