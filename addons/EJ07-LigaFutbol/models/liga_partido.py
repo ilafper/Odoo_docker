@@ -162,9 +162,20 @@ class LigaPartido(models.Model):
     #funcione sprueba botones de sumar goles
 
     def sumar_2_goles_local(self):
-        print("sisisissiis local")
+        todos_partidos= self.serch([])
+        #recorrer cada equipo local y sumar +2 a la campo de goles_cada
+        for cada_partido_local in todos_partidos:
+            cada_partido_local.goles_casa+=2
 
+       # la funcion que actualiza todos los de los equipos y recalcula todo
+        self.actualizoRegistrosEquipo()
 
         
     def sumar_2_goles_visitante(self):
-        print("sisisissiis visitante")
+        todos_partidos= self.serch([])
+        #recorrer cada equipo visistante y sumar +2 a la campo de goles_fuera
+        for cada_partido_visitante in todos_partidos:
+            cada_partido_visitante.goles_fuera+=2
+
+       # la funcion que actualiza todos los de los equipos y recalcula todo
+        self.actualizoRegistrosEquipo()
