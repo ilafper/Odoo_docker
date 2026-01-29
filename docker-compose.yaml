@@ -4,7 +4,7 @@ services:
     image: odoo:18.0
     depends_on:
       db:
-        condition: service_healthy  # Espera a que PostgreSQL esté listo
+        condition: service_healthy  
     ports:
       - "9001:8069"
       - "9002:8072"
@@ -12,7 +12,7 @@ services:
       - odoo-data:/var/lib/odoo
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
-    # ¡¡¡ESTAS VARIABLES SON OBLIGATORIAS!!!
+    
     environment:
       - HOST=db
       - USER=odoo_db

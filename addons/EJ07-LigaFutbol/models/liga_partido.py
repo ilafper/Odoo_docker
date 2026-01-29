@@ -161,7 +161,10 @@ class LigaPartido(models.Model):
     
     #funcione sprueba botones de sumar goles
 
+
+
     def sumar_2_goles_local(self):
+        #coger todos los partidos sin filtro
         todos_partidos= self.search([])
         #recorrer cada equipo local y sumar +2 a la campo de goles_cada
         for cada_partido_local in todos_partidos:

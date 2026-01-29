@@ -46,29 +46,29 @@
         </field>
     </record>
 
-    <!-- Vista LISTA (CORREGIDA) -->
+    <!-- Vista LISTA -->
     <record id="liga_partido_view_list" model="ir.ui.view">
         <field name="name">Lista de partidos de la liga</field>
         <field name="model">liga.partido</field>
         <field name="arch" type="xml">
             <list>
-                <!-- botones de sumar goles en local y visitante en la vista de lista -->
+                <!-- botones de sumar goles en local y visitante en la vista de lista , 
+                    el always es importante añadirlo por que si no no te apareceran los botones
+                 -->
                 <header>
                         <button
                             name="sumar_2_goles_local"
                             string="+2 goles local"
                             type="object"
                             display="always"
-                            confirm="¿Desea sumar 2 goles a los equipos locales?"
-                            class="oe_highlight"/>
+                            confirm="¿Desea sumar 2 goles a los equipos locales?"/>
                         
                         <button
                             name="sumar_2_goles_visitante"
                             string="+2 goles visitante"
                             type="object"
                             display="always"
-                            confirm="¿Desea sumar 2 goles a los equipos visitantes?"
-                            class="oe_highlight"/>
+                            confirm="¿Desea sumar 2 goles a los equipos visitantes?"/>
                 </header>
                 
                 <!-- Campos -->
@@ -104,9 +104,6 @@
                             confirm="¿Desea sumar 2 goles a los equipos visitantes?"
                             class="oe_highlight"/>
                 </header>
-
-
-
 
                 <!-- Campos -->
                 <field name="equipo_casa" />
