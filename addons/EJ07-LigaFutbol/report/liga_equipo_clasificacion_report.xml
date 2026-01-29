@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Ejemplo de informe asociado a equipo (se genera al darle  aimprimir 
+    <!-- Ejemplo de informe asociado a equipo (se genera al darle a imprimir 
         desde la vista Form de un equipo) -->
     <template id="report_clasificacion_view">
         <!-- Aqui la estructura a seguir -->

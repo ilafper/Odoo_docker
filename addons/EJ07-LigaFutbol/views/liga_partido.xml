@@ -24,6 +24,7 @@
                             string="Imprimir Informe"
                             type="action"
                             class="btn-primary"/>
+                        
                 </header>
                 
                 
@@ -51,9 +52,24 @@
         <field name="model">liga.partido</field>
         <field name="arch" type="xml">
             <list>
-                <!-- BOTONES EN VISTA LISTA - VAN DIRECTO AQUÍ, NO EN HEADER
-                <button name="sumar_2_goles_local" type="object" string="+2 Goles Casa" class="btn-primary"/>
-                <button name="sumar_2_goles_visitante" type="object" string="+2 Goles Fuera" class="btn-secondary"/> -->
+                <!-- botones de sumar goles en local y visitante en la vista de lista -->
+                <header>
+                        <button
+                            name="sumar_2_goles_local"
+                            string="+2 goles local"
+                            type="object"
+                            display="always"
+                            confirm="¿Desea sumar 2 goles a los equipos locales?"
+                            class="oe_highlight"/>
+                        
+                        <button
+                            name="sumar_2_goles_visitante"
+                            string="+2 goles visitante"
+                            type="object"
+                            display="always"
+                            confirm="¿Desea sumar 2 goles a los equipos visitantes?"
+                            class="oe_highlight"/>
+                </header>
                 
                 <!-- Campos -->
                 <field name="equipo_casa" />
@@ -64,12 +80,34 @@
         </field>
     </record>
 
-    <!-- Vista Kanban (CORREGIDA) -->
+    <!-- Vista Kanban -->
     <record id="liga_partido_view_kanban" model="ir.ui.view">
         <field name="name">Kanban Partidos</field>
         <field name="model">liga.partido</field>
         <field name="arch" type="xml">
             <kanban>
+                <!-- botones de sumar goles en local y visitante en la vista de kanvan -->
+                <header>
+                        <button
+                            name="sumar_2_goles_local"
+                            string="+2 goles local"
+                            type="object"
+                            display="always"
+                            confirm="¿Desea sumar 2 goles a los equipos locales?"
+                            class="oe_highlight"/>
+                        
+                        <button
+                            name="sumar_2_goles_visitante"
+                            string="+2 goles visitante"
+                            type="object"
+                            display="always"
+                            confirm="¿Desea sumar 2 goles a los equipos visitantes?"
+                            class="oe_highlight"/>
+                </header>
+
+
+
+
                 <!-- Campos -->
                 <field name="equipo_casa" />
                 <field name="goles_casa" />
