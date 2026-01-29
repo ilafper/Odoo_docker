@@ -162,7 +162,7 @@ class LigaPartido(models.Model):
     #funcione sprueba botones de sumar goles
 
     def sumar_2_goles_local(self):
-        todos_partidos= self.serch([])
+        todos_partidos= self.search([])
         #recorrer cada equipo local y sumar +2 a la campo de goles_cada
         for cada_partido_local in todos_partidos:
             cada_partido_local.goles_casa+=2
@@ -172,7 +172,7 @@ class LigaPartido(models.Model):
 
         
     def sumar_2_goles_visitante(self):
-        todos_partidos= self.serch([])
+        todos_partidos= self.search([])
         #recorrer cada equipo visistante y sumar +2 a la campo de goles_fuera
         for cada_partido_visitante in todos_partidos:
             cada_partido_visitante.goles_fuera+=2
