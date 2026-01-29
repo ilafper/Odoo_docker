@@ -58,6 +58,7 @@
                             name="sumar_2_goles_local"
                             string="+2 goles local"
                             type="object"
+                            display="always"
                             confirm="¿Desea sumar 2 goles a los equipos locales?"
                             class="oe_highlight"/>
                         
@@ -65,6 +66,7 @@
                             name="sumar_2_goles_visitante"
                             string="+2 goles visitante"
                             type="object"
+                            display="always"
                             confirm="¿Desea sumar 2 goles a los equipos visitantes?"
                             class="oe_highlight"/>
                 </header>
