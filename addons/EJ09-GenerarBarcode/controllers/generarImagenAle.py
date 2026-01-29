@@ -1,16 +1,10 @@
 # -*- coding: utf-8 -*-
 # Importamos clases necesarias de Odoo para definir controladores HTTP
 from odoo import http
-from odoo.http import request
 import random
-from PIL import Image, ImageDraw
+from PIL import Image
 import io
 import base64
-
-
-
-
-
 # Clase controladora para las rutas HTTP que expone nuestro módulo
 class ImagenAleatoria(http.Controller):
 
@@ -43,7 +37,7 @@ class ImagenAleatoria(http.Controller):
 
         #cuado le des a guardar la imagen te saldra en formato png
         imagen.save(buffer, format='PNG')
-        #  la parte base64.64encode convierte bytes binarios en texto seguro que puede ir en URLs/HTML.
+        #la parte base64.64encode convierte bytes binarios en texto seguro que puede ir en URLs/HTML.
         imagen_convertida = base64.b64encode(buffer.getvalue()).decode('utf-8')
         
         #devolver la imagen

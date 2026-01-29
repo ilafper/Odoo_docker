@@ -1,10 +1,10 @@
-version: '3'
 services:
   odoo:
     container_name: e0.bigodoo.net
     image: odoo:18.0
     depends_on:
-      - db
+      db:
+        condition: service_healthy  # Espera a que PostgreSQL esté listo
     ports:
       - "9001:8069"
       - "9002:8072"
@@ -12,19 +12,34 @@ services:
       - odoo-data:/var/lib/odoo
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
+    # ¡¡¡ESTAS VARIABLES SON OBLIGATORIAS!!!
+    environment:
+      - HOST=db
+      - USER=odoo_db
+      - PASSWORD=odoo_db
+      - POSTGRES_DB=postgres
+      - POSTGRES_PORT=5432
+    restart: unless-stopped
 
   db:
     container_name: postgresdb
-    image: postgres:12.0
+    image: postgres:15 
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=odoo_db
       - POSTGRES_PASSWORD=odoo_db
+      - POSTGRES_HOST_AUTH_METHOD=trust 
       - PGDATA=/var/lib/postgresql/data/pgdata
     ports:
       - "5501:5432"
     volumes:
       - db-data:/var/lib/postgresql/data/pgdata
+    healthcheck: 
+      test: ["CMD-SHELL", "pg_isready -U odoo_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
 
 volumes:
   db-data:

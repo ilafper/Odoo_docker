@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="plantilla_pdf_imprimir_template">
+        <t t-call="web.html_container">
+            <!-- usar el layout de odoo-->
+            <t t-call="web.external_layout">
+                <div class="header">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <h1>Informe de Partidos de la Liga</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article">
+                    <t t-call="EJ07-LigaFutbol.contenido_principal_template"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- Template separado para el contenido -->
+    <template id="contenido_principal_template">
+        <t t-if="docs">
+            <!-- un solo partido -->
+            <t t-if="len(docs) == 1">
+                <t t-set="partido" t-value="docs[0]"/>
+                
+                <div class="row mt-3">
+                    <div class="col-xs-12">
+                        <h3>Detalles del Partido</h3>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Equipo Local</th>
+                                <td><span t-field="partido.equipo_casa.nombre"/></td>
+                            </tr>
+                            <tr>
+                                <th>Goles Local</th>
+                                <td><span t-field="partido.goles_casa"/></td>
+                            </tr>
+                            <tr>
+                                <th>Equipo Visitante</th>
+                                <td><span t-field="partido.equipo_fuera.nombre"/></td>
+                            </tr>
+                            <tr>
+                                <th>Goles Visitante</th>
+                                <td><span t-field="partido.goles_fuera"/></td>
+                            </tr>
+                            <tr>
+                                <th>Resultado</th>
+                                <td>
+                                    <t t-if="partido.goles_casa &gt; partido.goles_fuera">
+                                        Victoria del local
+                                    </t>
+                                    <t t-elif="partido.goles_casa &lt; partido.goles_fuera">
+                                        Victoria del visitante
+                                    </t>
+                                    <t t-else="">
+                                        Empate
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Diferencia de Goles</th>
+                                <td>
+                                    <span t-esc="abs(partido.goles_casa - partido.goles_fuera)"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </t>
+            
+            
+        </t>
+        
+        <t t-else="">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>No hay partidos para mostrar.</p>
+                </div>
+            </div>
+        </t>
+    </template>
+   
+    <!-- Crear un registro de tipo "acción de reporte" en Odoo -->
+   <record id="boton_imprimir_pdf" model="ir.actions.report">
+    
+    <!-- Nombre del reporte que verá el usuario -->
+    <field name="name">Informe de Partido</field>
+    <!-- Modelo del que se extraen los datos para el reporte -->
+    <field name="model">liga.partido</field>
+    <!-- tipo de documento que descargara en este caso PDF-->
+    <field name="report_type">qweb-pdf</field>
+    <!-- ID de la plantilla QWeb que define el diseño del PDF -->
+    <field name="report_name">EJ07-LigaFutbol.plantilla_pdf_imprimir_template</field>
+    <!-- Archivo que se usará para generar el reporte (normalmente igual que report_name) -->
+    <field name="report_file">EJ07-LigaFutbol.plantilla_pdf_imprimir_template</field>
+    <!-- nombre del archivo que se descargara -->
+    <field name="print_report_name">
+        'Informe Partido - %s vs %s' % (object.equipo_casa.nombre, object.equipo_fuera.nombre)
+    </field>
+</record>
+
+
+</odoo>

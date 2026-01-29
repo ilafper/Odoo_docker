@@ -9,7 +9,6 @@
 
     <menuitem name="Partidos de la liga" id="liga_partido_menu" parent="liga_base_menu" action="liga_partido_action" />
 
-
     <menuitem name="Partidos de la liga" id="liga_partido_menu" parent="liga_base_menu" action="liga_partido_action" />
 
     <!-- VISTA DE FORMULARIO -->
@@ -18,12 +17,15 @@
         <field name="model">liga.partido</field>
         <field name="arch" type="xml">
             <form>
-                <!-- <header>
-                    BOTONES EN FORMULARIO - DEBEN COINCIDIR CON MÉTODOS EN PYTHON
-                    <button name="sumar_2_goles_local" type="object" string="+2 Goles Casa" class="btn-primary"/>
-                    <button name="sumar_2_goles_visitante" type="object" string="+2 Goles Fuera" class="btn-secondary"/>
-                </header> 
-                -->
+                 <!-- boton para imprmir el pdf del partido -->
+                <header>
+                        <button
+                            name="%(EJ07-LigaFutbol.boton_imprimir_pdf)d"
+                            string="Imprimir Informe"
+                            type="action"
+                            class="btn-primary"/>
+                </header>
+                
                 
                 <sheet>
                     <group>
@@ -31,10 +33,12 @@
                             <field name="equipo_casa" />
                             <field name="goles_casa" />
                         </group>
+
                         <group>
                             <field name="equipo_fuera" />
                             <field name="goles_fuera" />
                         </group>
+
                     </group>
                 </sheet>
             </form>
