@@ -4,7 +4,7 @@
     <record id='liga_partido_action' model='ir.actions.act_window'>
         <field name="name">Partidos de la liga</field>
         <field name="res_model">liga.partido</field>
-        <field name="view_mode">kanban,list,form</field>
+        <field name="view_mode">kanban,list,form,graph</field>
     </record>
 
     <menuitem name="Partidos de la liga" id="liga_partido_menu" parent="liga_base_menu" action="liga_partido_action" />
@@ -88,6 +88,7 @@
             <kanban>
                 <!-- botones de sumar goles en local y visitante en la vista de kanvan -->
                 <header>
+
                         <button
                             name="sumar_2_goles_local"
                             string="+2 goles local"
@@ -103,6 +104,7 @@
                             display="always"
                             confirm="¿Desea sumar 2 goles a los equipos visitantes?"
                             class="oe_highlight"/>
+                            
                 </header>
 
                 <!-- Campos -->
@@ -128,13 +130,6 @@
                                     <field name="equipo_fuera" /> : <field name="goles_fuera" />
                                 </div>
                                 
-                                <!-- BOTONES DENTRO DE CADA TARJETA KANBAN
-                                <div class="oe_kanban_footer" style="margin-top: 10px; padding: 5px;">
-                                    <button name="sumar_2_goles_local" type="object" string="+2 Casa" 
-                                            class="oe_kanban_action oe_kanban_action_a btn btn-primary btn-sm"/>
-                                    <button name="sumar_2_goles_visitante" type="object" string="+2 Fuera" 
-                                            class="oe_kanban_action oe_kanban_action_a btn btn-secondary btn-sm"/>
-                                </div> -->
                             </div>
                         </div>
                     </t>
@@ -142,5 +137,23 @@
             </kanban>
         </field>
     </record>
+     
+
+    <record model="ir.ui.view" id="liga_partido_view_graph">
+        <!-- este es un id inerno para la vista de grafg en la base de datos no es visible para el usuario en la interfaz --> 
+        <field name="name">vista grafica goles locales total</field>
+        <!-- modelo  al que hace referencia-->
+        <field name="model">liga.partido</field>
+        <!--  tipo -->
+        <field name="type">graph</field>
+        <field name="arch" type="xml">  
+                
+            <graph string="Goles locales todos">
+                <field name="equipo_casa" group="True" type="row"/>
+            <!--   el type mesure hace calculos del campo que le mandas por defecto hace una suma que lo que buscamos en este ejecercicio-->
+                <field name="goles_casa" group="True" type="measure" string="Total_goles_local"/>
+             </graph>
+        </field>
+     </record>
 
 </odoo>

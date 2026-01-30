@@ -81,8 +81,7 @@
         </field>
     </record>
 
-
-    <!-- Vista Graph  que muestra información usando como base los puntos-->
+ <!-- Vista grahp -->
     <record model="ir.ui.view" id="liga_equipo_view_graph">
         <field name="name">Puntos por equipo</field>
         <field name="model">liga.equipo</field>

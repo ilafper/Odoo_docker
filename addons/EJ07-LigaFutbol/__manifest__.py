@@ -16,7 +16,6 @@
     'depends': ['base'],
 
     'data': [
-
       
         #Estos dos primeros ficheros:
         #1) El primero indica grupo de seguridad basado en rol
