@@ -1,7 +1,7 @@
 # comando para instalar las libreria de request                pip install python-telegram-bot requests 
 # import de la librerias
 from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters
+from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filters
 import requests
 import json
 from dotenv import load_dotenv
@@ -11,7 +11,6 @@ load_dotenv()
 # el token que nos pasara el bot de telegram
 #TOKEN = "8266994992:AAFIDAke9iL8Dj7_1baUQCRBWXdPXUEeSnM"
 #la url de la api
-
 
 #variables de entorno de la url de la api, de la mostrar todos y el token de telegram bot
 API_URL=os.getenv("API_URL")
@@ -27,25 +26,27 @@ TOKEN = os.getenv("TOKEN_TELEGRAM_BOT")
 # funcion para las ordenes
 async def ordenes_comandos_telegram(update: Update, context: ContextTypes.DEFAULT_TYPE):
     #leera el mensaje completo, por ejemplo: "Crear, nombre=”nombre”,apellidos=”apellidos”, num_socio=”numerosocio”"
-    
     mensaje_que_le_mandamos = update.message.text
 
     try:
         # vamos a dividirlo en partes
-        partes = mensaje_que_le_mandamos.split(",") # cuando le mandamos el mensaje seria como el formato que le mandamos arriba, loq ue haremos sera segmentarlo por las comas "," que daria algo asi : ["Crear", " nombre=Juan", "apellidos=Pérez", "num_socio=3"]
+        partes = mensaje_que_le_mandamos.split(",") # cuando le mandamos el mensaje seria como el formato que le mandamos arriba, loq ue haremos sera 
+        #segmentarlo por las comas "," que daria algo asi : ["Crear", " nombre=Juan", "apellidos=Pérez", "num_socio=3"]
 
         # le indicamos que la orden es la posicion 0 osea la primera parte, usamos strip por si hay algun espacion para evitar problemas y pasarlo a minusculas
         orden = partes[0].strip().lower()
 
         # guardar los datos del usuarios, los campos y sus valores por ejemplo "nombre": "juan" y el resto si se lo mandasmos
         datos_orden = {}
-        
+
+        # recorrer cada parte del rsto de las instrucciones, pero empezamos a partir de la orden, se cogeria la parte de por ejemplo nombre= ivan y lo que siga
         for cada_parte in partes[1:]:
+
             tipo_orden, cada_campo = cada_parte.split("=")
+
             datos_orden[tipo_orden.strip()] = cada_campo.strip()
 
-        # CREAR
-
+        # CREAR 
         if orden == "crear":
             print(datos_orden)
             datos_parseados=json.dumps(datos_orden)
