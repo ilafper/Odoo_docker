@@ -1,7 +1,7 @@
 # comando para instalar las libreria de request                pip install python-telegram-bot requests 
 # import de la librerias
 from telegram import Update
-from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filters
+from telegram.ext import ApplicationBuilder,CommandHandler, MessageHandler, ContextTypes, filters
 import requests
 import json
 from dotenv import load_dotenv
@@ -23,9 +23,22 @@ TOKEN = os.getenv("TOKEN_TELEGRAM_BOT")
 # API_URL_MOSTRAR_TODOS = "http://localhost:9001/gestion/socio"
 
 
+
+mensaje_inicial="""
+¡Hola! Bienvenido al bot.
+"""
+
+
+
+
+
+
+
 # funcion para las ordenes
 async def ordenes_comandos_telegram(update: Update, context: ContextTypes.DEFAULT_TYPE):
     #leera el mensaje completo, por ejemplo: "Crear, nombre=”nombre”,apellidos=”apellidos”, num_socio=”numerosocio”"
+
+
     mensaje_que_le_mandamos = update.message.text
 
     try:
@@ -51,7 +64,7 @@ async def ordenes_comandos_telegram(update: Update, context: ContextTypes.DEFAUL
             print(datos_orden)
             datos_parseados=json.dumps(datos_orden)
             print("adasdjjffffufuf"+datos_parseados)
-            # con la libreria de requests le indicamos el tipo de peticion que es, la parte de la url y los datos
+            # con la libreria de requests le indicamos el tipo de peticion que es(en este caso post), la parte de la url y los datos
             respuesta = requests.post(API_URL, datos_parseados)
             #mesajes para verlos en la terminal
             print(f"Se ha creado al usuario: {datos_orden}")
@@ -88,13 +101,33 @@ async def ordenes_comandos_telegram(update: Update, context: ContextTypes.DEFAUL
 
 
 
+# comando /help 
+async def ayuda(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    mensaje_aiuda = """
+    Lo que puedes hacer:
+
+    • **Ver todos los socios**: todos
+    • **Crear socio**: Crear, nombre=Juan, apellidos=fonso, num_socio=777 
+    • **Borrar socio**: borrar, num_socio= [ numero del socio ]
+    • **Modificar socio**: put ,num_socio=[ numero del socio para modificar ], [ campo a modificar]= valor a modificar
+    """
+    await update.message.reply_text(mensaje_aiuda)
+
+
+
+
 
 def main():
     app = ApplicationBuilder().token(TOKEN).build()
 
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, ordenes_comandos_telegram))
+    #cuando hacer /help llama a la funcion que mostrara el mensaje de ayuda, esto es gracias al commandhandler que son todos los mensajes  que empeicen por "/" mas el texto en nuestro caso es help y la fucnio
+    app.add_handler(CommandHandler("help", ayuda))
 
+    # para el resto de las ordenes que le ponemso 
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, ordenes_comandos_telegram))
+    #mesaje en la terminal del proyecto para ver si inicio correctamente
     print("Bot SISISI")
+    
     app.run_polling()
 
 if __name__ == "__main__":

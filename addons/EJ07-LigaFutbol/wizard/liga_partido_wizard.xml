@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- modificar el modelo referenciado -->
+<record id='liga_partido_wizard_form' model='ir.ui.view'>
+    <field name='name'>Wizar nuevo partido</field>
+    <field name='model'>liga.partido.wizard</field>
+    <field name='arch' type='xml'>
+        <form string="Introducir datos de un partido">
+            <!-- modificar los campos-->
+            
+            <group>
+                <group string="Equipos">
+                    <field name='equipo_casa'/>
+                     <field name='equipo_fuera'/>
+                </group>
+                
+                <group string="Jornada y resultado">
+                    <field name='goles_casa'/>
+                    <field name='goles_fuera'/>
+                    <field name='jornada'/>
+                </group>
+            </group>
+            <footer>
+                <!-- modificar el nombre de la funcionpara crear partido -->
+                <button string='Añadir partido' name='crear_partido_wizard' class='btn-primary' type='object'/>
+                <button string='Cancel' class='btn-default' special='cancel'/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+
+
+
+<!-- referenciar el id con el action del menu item de abajo-->
+<record id="action_wizard_liga_partido" model="ir.actions.act_window">
+    <field name="name">Añadir Partido</field>
+    <field name="res_model">liga.partido.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+</record>
+
+
+
+
+
+<menuitem id="menu_wizard_liga_partido" parent="liga_base_menu" action="action_wizard_liga_partido" sequence="20" />
+
+</odoo>

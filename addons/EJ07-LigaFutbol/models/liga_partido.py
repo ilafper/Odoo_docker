@@ -16,6 +16,8 @@ class LigaPartido(models.Model):
     # https://www.odoo.com/es_ES/forum/ayuda-1/how-defined-display-name-in-custom-many2one-91657
     
    
+    # nuevo de campo de jornada para ejercicio de wizar.
+    jornada=fields.Integer()
 
     #Nombre del equipo que juega en casa casa
     equipo_casa = fields.Many2one(
@@ -32,6 +34,11 @@ class LigaPartido(models.Model):
     )
     #Goles equipo de casa
     goles_fuera= fields.Integer()
+
+
+
+
+
     
     #Constraints de atributos
     @api.constrains('equipo_casa')

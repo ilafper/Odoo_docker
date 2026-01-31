@@ -4,6 +4,7 @@
     <record id='liga_partido_action' model='ir.actions.act_window'>
         <field name="name">Partidos de la liga</field>
         <field name="res_model">liga.partido</field>
+        <!-- añadir la parte de graph para poder alternar entre las vista -->
         <field name="view_mode">kanban,list,form,graph</field>
     </record>
 
@@ -140,7 +141,7 @@
      
 
     <record model="ir.ui.view" id="liga_partido_view_graph">
-        <!-- este es un id inerno para la vista de grafg en la base de datos no es visible para el usuario en la interfaz --> 
+        <!-- este es un id interno para la vista de grafg en la base de datos no es visible para el usuario en la interfaz --> 
         <field name="name">vista grafica goles locales total</field>
         <!-- modelo  al que hace referencia-->
         <field name="model">liga.partido</field>
