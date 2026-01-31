@@ -24,22 +24,12 @@ TOKEN = os.getenv("TOKEN_TELEGRAM_BOT")
 
 
 
-mensaje_inicial="""
-¡Hola! Bienvenido al bot.
-"""
-
-
-
-
-
-
-
 # funcion para las ordenes
 async def ordenes_comandos_telegram(update: Update, context: ContextTypes.DEFAULT_TYPE):
     #leera el mensaje completo, por ejemplo: "Crear, nombre=”nombre”,apellidos=”apellidos”, num_socio=”numerosocio”"
 
-
     mensaje_que_le_mandamos = update.message.text
+
 
     try:
         # vamos a dividirlo en partes
@@ -59,7 +49,7 @@ async def ordenes_comandos_telegram(update: Update, context: ContextTypes.DEFAUL
 
             datos_orden[tipo_orden.strip()] = cada_campo.strip()
 
-        # CREAR 
+        # CREAR
         if orden == "crear":
             print(datos_orden)
             datos_parseados=json.dumps(datos_orden)

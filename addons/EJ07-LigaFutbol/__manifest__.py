@@ -37,6 +37,7 @@
         #Añadimos un Wizard para introducir equipos
         'wizard/liga_equipo_wizard.xml',
         #añadir el wizard de parido que hemos creado
+        'wizard/liga_partido_wizard.xml',
         
         
     ],
