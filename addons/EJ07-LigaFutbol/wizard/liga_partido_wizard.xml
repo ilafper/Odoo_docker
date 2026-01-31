@@ -29,9 +29,6 @@
     </field>
 </record>
 
-
-
-
 <!-- referenciar el id con el action del menu item de abajo-->
 <record id="action_wizard_liga_partido" model="ir.actions.act_window">
     <field name="name">Añadir Partido</field>
@@ -39,9 +36,6 @@
     <field name="view_mode">form</field>
     <field name="target">new</field>
 </record>
-
-
-
 
 
 <menuitem id="menu_wizard_liga_partido" parent="liga_base_menu" action="action_wizard_liga_partido" sequence="20" />

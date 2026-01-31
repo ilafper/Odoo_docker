@@ -7,15 +7,12 @@ class LigaPartido(models.Model):
     #Nombre y descripcion del modelo
     _name = 'liga.partido'
     _description = 'Un partido de la liga'
-    
 
     #Atributos del modelo
-
 
     #PARA CUANDO NO HAY UN ATRIBUTO LLAMADO NAME PARA MOSTRAR LOS Many2One en Vistas
     # https://www.odoo.com/es_ES/forum/ayuda-1/how-defined-display-name-in-custom-many2one-91657
     
-   
     # nuevo de campo de jornada para ejercicio de wizar.
     jornada=fields.Integer()
 
